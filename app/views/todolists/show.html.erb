@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @todolist.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @todolist.description %>
+</p>
+
+<div class="todoitems-wrapper">
+  <%=render @todolist.todoitems%>
+  <div class = "form">
+     <%=render "todoitems/form"%>
+  </div>
+</div>
+
+<table class="comicGreen" border="3">
+	<thead>
+		<tr>
+			<th>Content</th>
+			<th>Show</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+    <p>List of items belongs to the todo list are:</p>
+    <ol>
+	<tbody>
+			<%@todolist.todoitems.limit(@todolist.todoitems.length-1).each do |todoitem|%>
+			
+			<tr>
+			<td><%=todoitem.content%></td>
+			<td><%=link_to "Show the item",todolist_todoitem_path(todolist_id: todoitem.todolist_id,id: todoitem.id)%></td>
+			<td><%=link_to "Delete the item",todolist_todoitem_path(todolist_id: todoitem.todolist_id,id: todoitem.id),method: :delete%></td>
+		    </tr>	
+		    <%end%> 		
+	</tbody>
+    </ol>
+</table>
+
+<%= link_to "create a new Todoitem",new_todolist_todoitem_path(@todolist)%>
+
+<%= link_to 'Edit', edit_todolist_path(@todolist) %> |
+<%= link_to 'Back', todolists_path %>

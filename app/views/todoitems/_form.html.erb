@@ -1,0 +1,4 @@
+<%=form_for([@todolist,@todolist.todoitems.build]) do |f|%>
+  <%=f.text_field :content, placeholder: "New to Do"%>
+  <%=f.submit%>
+<%end%>
