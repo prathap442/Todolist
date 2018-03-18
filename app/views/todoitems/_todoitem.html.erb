@@ -1,1 +1,23 @@
-<p><%=@todoitem%></p>
+<div class="row clearfix">
+	<% if(todoitem.completed?)%>
+	  	 <div class="mark-completed">
+	       <%=link_to "Mark as complete",complete_todolist_todoitem_path(@todolist.id,todoitem.id)%>
+	  	 </div>
+	  	 <div class="todo-item">
+	        <p><strike><%=todoitem.content%></strike></p>
+	  	 </div>
+	  	 <div class="trash">
+	        <%= link_to "delete",todolist_todoitem_path(@todolist,todoitem.id),method: :delete %>
+	  	 </div>	
+	<%else%>
+	     <div class="mark-completed">
+	       <%=link_to "Mark as complete",complete_todolist_todoitem_path(@todolist.id,todoitem.id)%>
+	  	 </div>
+	  	 <div class="todo-item">
+	        <p><%=todoitem.content%></p>
+	  	 </div>
+	  	 <div class="trash">
+	        <%= link_to "delete",todolist_todoitem_path(@todolist,todoitem.id),method: :delete %>
+	  	 </div>	
+	<%end%>
+</div>
